@@ -3,8 +3,7 @@ package miPresentacion;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GUI_Presentacion extends JFrame {
     //atributos
@@ -12,8 +11,10 @@ public class GUI_Presentacion extends JFrame {
     private JPanel panelBotones, panelDatos;
     private Titulos titulo;
     private JLabel labelImagen;
-    private  JTextArea textoExpectativas;
+    private JTextArea textoExpectativas;
     private Escucha escucha;
+    private Escucha2 escucha2;
+    private Escucha3 escucha3;
 
     //metodos
     public GUI_Presentacion(){
@@ -31,6 +32,8 @@ public class GUI_Presentacion extends JFrame {
         //Definir continer y Layout del JFrame
         //Crear objetos Escucha y Control
         escucha = new Escucha();
+        escucha2 = new Escucha2();
+        escucha3 = new Escucha3();
         //Configurar JComponents
         titulo = new Titulos("Hola soy Luisa, oprime los botones...", Color.BLACK);
         this.add(titulo,BorderLayout.NORTH);
@@ -98,6 +101,51 @@ public class GUI_Presentacion extends JFrame {
             }
             revalidate();
             repaint();
+        }
+    }
+
+    private class Escucha2 implements MouseListener{
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+    }
+
+    private class Escucha3 implements KeyListener{
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
         }
     }
 }
