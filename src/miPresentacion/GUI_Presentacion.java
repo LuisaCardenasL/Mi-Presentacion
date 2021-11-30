@@ -13,8 +13,6 @@ public class GUI_Presentacion extends JFrame {
     private JLabel labelImagen;
     private JTextArea textoExpectativas;
     private Escucha escucha;
-    private Escucha2 escucha2;
-    private Escucha3 escucha3;
 
     //metodos
     public GUI_Presentacion(){
@@ -26,14 +24,13 @@ public class GUI_Presentacion extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setFocusable(true);
     }
 
     private void initGUI() {
         //Definir continer y Layout del JFrame
         //Crear objetos Escucha y Control
         escucha = new Escucha();
-        escucha2 = new Escucha2();
-        escucha3 = new Escucha3();
         //Configurar JComponents
         titulo = new Titulos("Hola soy Luisa, oprime los botones...", Color.BLACK);
         this.add(titulo,BorderLayout.NORTH);
@@ -48,9 +45,9 @@ public class GUI_Presentacion extends JFrame {
         miFoto = new JButton("Este soy yo");
         miFoto.addActionListener(escucha);
         miHobby = new JButton("Este es mi hobby");
-        miHobby.addActionListener(escucha);
+        miHobby.addMouseListener(escucha);
         misExpectaticas = new JButton("Creo que...");
-        misExpectaticas.addActionListener(escucha);
+        misExpectaticas.addKeyListener(escucha);
 
         panelBotones = new JPanel();
         panelBotones.add(miFoto);
@@ -73,7 +70,7 @@ public class GUI_Presentacion extends JFrame {
         });
     }
 
-    private class Escucha implements ActionListener {
+    private class Escucha implements ActionListener, MouseListener, KeyListener{
         private ImageIcon image;
 
         @Override
@@ -91,22 +88,38 @@ public class GUI_Presentacion extends JFrame {
                     image = new ImageIcon(getClass().getResource("/recursos/valorant.png"));
                     labelImagen.setIcon(image);
                     panelDatos.add(labelImagen);
-                }else{
+                }/*else{
                     textoExpectativas.setText("No se de Java y casi no se programar.\n" +
                                               "Quiero aprender a tener una buena logica de programacion.");
                     textoExpectativas.setFont(new Font("Calibri",Font.PLAIN,20));
                     textoExpectativas.setBackground(null);
                     panelDatos.add(textoExpectativas);
                 }
+                */
             }
             revalidate();
             repaint();
         }
-    }
 
-    private class Escucha2 implements MouseListener{
         @Override
         public void mouseClicked(MouseEvent e) {
+            panelDatos.removeAll();
+            if(e.getClickCount()==2){
+                image = new ImageIcon(getClass().getResource("/recursos/valorant.png"));
+                labelImagen.setIcon(image);
+                panelDatos.add(labelImagen);
+            }
+            revalidate();
+            repaint();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
 
         }
 
@@ -121,21 +134,17 @@ public class GUI_Presentacion extends JFrame {
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-    }
-
-    private class Escucha3 implements KeyListener{
-
-        @Override
         public void keyTyped(KeyEvent e) {
-
+            panelDatos.removeAll();
+            if(e.getKeyChar()==KeyEvent.VK_M){
+                textoExpectativas.setText("No se de Java y casi no se programar.\n" +
+                        "Quiero aprender a tener una buena logica de programacion.");
+                textoExpectativas.setFont(new Font("Calibri",Font.PLAIN,20));
+                textoExpectativas.setBackground(null);
+                panelDatos.add(textoExpectativas);
+            }
+            revalidate();
+            repaint();
         }
 
         @Override
